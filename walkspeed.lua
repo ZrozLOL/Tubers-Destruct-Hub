@@ -19,7 +19,7 @@ local colors = {
 local Window = Library.CreateLib("WalkSpeed Hack", "RJTheme3")
 
 -- Секция
-local Tab = Window:NewTab("WalkSpeed")
+local Tab = Window:NewTab("WalkSpeed hack")
 
 
 -- Слайдер
