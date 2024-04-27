@@ -1,24 +1,5 @@
 -- Ссылка на Библиотеку
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
 
---[[ 
-В данный момент стоит тема "RJTheme3" ,
-вы можете использовать другую тему приведённую ниже -
-"RJTheme1"
-"RJTheme2"
-"RJTheme3"
-"RJTheme4"
-"RJTheme5"
-"RJTheme6"
-"RJTheme7"
-"RJTheme8"
-//////////////////////////////////////////////////////////////////
-
-Что бы сделать свою тему , уберите часть скрипта из "комминтариев" ,
-который находится чуть ниже , и вместо "RJTheme3" в переменной "Windows" - 
-напишите переменную которая используется в скрипте чуть ниже .
-]]
---
 
 local colors = {
 	-- Цвет фона у Секций
