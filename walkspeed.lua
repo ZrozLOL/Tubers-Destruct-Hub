@@ -2,7 +2,7 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
 
 -- Создать окно UI
-local Window = Library.CreateLib("Name", "RJTheme3")
+local Window = Library.CreateLib("WalkSpeed Hack", "RJTheme3")
 
 -- Секция
 local Tab = Window:NewTab("Main")
