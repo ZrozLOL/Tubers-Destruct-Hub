@@ -103,7 +103,6 @@ local function createScreenGuiForPlayer()
 		local function enable()
 			for _, player in pairs(game.Players:GetPlayers()) do
 				createESP(player)
-				textButton.Text = "On"
 			end
 		end
 
@@ -127,7 +126,6 @@ local function createScreenGuiForPlayer()
 			player.CharacterAdded:Connect(function()
 				if enabled then
 					createESP(player)
-					textButton.Text = "On"
 				end
 			end)
 			player.CharacterRemoving:Connect(function()
@@ -142,8 +140,10 @@ local function createScreenGuiForPlayer()
 			espbutton.BackgroundColor3 = enabled and Color3.new(0, 255, 0) or Color3.new(255, 0, 0)
 			if enabled then
 				enable()
+				textButton.Text = "On"
 			else
 				disable()
+				textButton.Text = "Off"
 			end
 		end)
 
