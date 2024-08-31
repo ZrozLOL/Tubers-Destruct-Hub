@@ -60,94 +60,108 @@ local function createScreenGuiForPlayer()
 	textButton1.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	textButton1.Parent = frame
 	
-	local Drag = Instance.new("DragDetector")
-	Drag.Name = "drag"
-	Drag.Parent = frame
+	local Holding = Instance.new("BoolValue")
+	Holding.Name = "Holding"
+	Holding.Parent = screenGui
 
 	-- Додаємо ScreenGui в PlayerGui гравця
 	screenGui.Parent = player:WaitForChild("PlayerGui")
+
+	local player = game.Players.LocalPlayer
+	local mouse = player:GetMouse()
+
+	mouse.Button1Down:Connect(function()
+		Holding.Value = true
+	end)
+
+	mouse.Button1Up:Connect(function()
+		Holding.Value = false
+	end)
+
+	mouse.Move:Connect(function()
+		if Holding.Value == true then
+			frame.Position = UDim2.new(0,mouse.X,0,mouse.Y) -- Change "Frame" to your frame name
+		end
+	end)
 	local connection
 
-	textButton.MouseButton1Click:Connect(function()
-		textButton.Text = "On"
-		local espbutton = textButton
+	local espbutton = textButton
 
-		local enabled = false
+	local enabled = false
 
-		local function createESP(player)
-			local char = player.Character or player.CharacterAdded:Wait()
-			if not char:FindFirstChild("esp") then
-				local highlight = Instance.new("Highlight")
-				highlight.FillTransparency = 1
-				highlight.Name = "esp"
-				highlight.Parent = char
+	local function createESP(player)
+		local char = player.Character or player.CharacterAdded:Wait()
+		if not char:FindFirstChild("esp") then
+			local highlight = Instance.new("Highlight")
+			highlight.FillTransparency = 1
+			highlight.Name = "esp"
+			highlight.Parent = char
 
-				if player.Team then
-					highlight.OutlineColor = player.Team.TeamColor.Color
-				end
+			if player.Team then
+				highlight.OutlineColor = player.Team.TeamColor.Color
+			end
 
-				if char == game.Players.LocalPlayer.Character then
-					highlight:Destroy()
-				end
+			if char == game.Players.LocalPlayer.Character then
+				highlight:Destroy()
 			end
 		end
+	end
 
-		local function destroyESP(player)
-			local char = player.Character
-			if char and char:FindFirstChild("esp") then
-				char.esp:Destroy()
+	local function destroyESP(player)
+		local char = player.Character
+		if char and char:FindFirstChild("esp") then
+			char.esp:Destroy()
+			textButton.Text = "Off"
+		end
+	end
+
+	local function enable()
+		for _, player in pairs(game.Players:GetPlayers()) do
+			createESP(player)
+		end
+	end
+
+	local function disable()
+		for _, player in pairs(game.Players:GetPlayers()) do
+			destroyESP(player)
+			textButton.Text = "Off"
+		end
+	end
+
+	local function checkteam()
+		for _, player in pairs(game.Players:GetPlayers()) do
+			if player.Team == game.Players.LocalPlayer.Team then
+				destroyESP(player)
 				textButton.Text = "Off"
 			end
 		end
+	end
 
-		local function enable()
-			for _, player in pairs(game.Players:GetPlayers()) do
+	game.Players.PlayerAdded:Connect(function(player)
+		player.CharacterAdded:Connect(function()
+			if enabled then
 				createESP(player)
 			end
-		end
-
-		local function disable()
-			for _, player in pairs(game.Players:GetPlayers()) do
-				destroyESP(player)
-				textButton.Text = "Off"
-			end
-		end
-
-		local function checkteam()
-			for _, player in pairs(game.Players:GetPlayers()) do
-				if player.Team == game.Players.LocalPlayer.Team then
-					destroyESP(player)
-					textButton.Text = "Off"
-				end
-			end
-		end
-
-		game.Players.PlayerAdded:Connect(function(player)
-			player.CharacterAdded:Connect(function()
-				if enabled then
-					createESP(player)
-				end
-			end)
-			player.CharacterRemoving:Connect(function()
-				destroyESP(player)
-				textButton.Text = "Off"
-			end)
 		end)
-
-
-		espbutton.Activated:Connect(function()
-			enabled = not enabled
-			espbutton.BackgroundColor3 = enabled and Color3.new(0, 255, 0) or Color3.new(255, 0, 0)
-			if enabled then
-				enable()
-				textButton.Text = "On"
-			else
-				disable()
-				textButton.Text = "Off"
-			end
+		player.CharacterRemoving:Connect(function()
+			destroyESP(player)
+			textButton.Text = "Off"
 		end)
-
 	end)
+
+
+	espbutton.Activated:Connect(function()
+		enabled = not enabled
+		espbutton.BackgroundColor3 = enabled and Color3.new(0, 255, 0) or Color3.new(255, 0, 0)
+		if enabled then
+			enable()
+			textButton.Text = "On"
+		else
+			disable()
+			textButton.Text = "Off"
+		end
+	end)
+
 
 
 
