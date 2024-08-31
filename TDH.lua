@@ -46,24 +46,33 @@ local function createScreenGuiForPlayer()
 	textButton.TextColor3 = Color3.fromRGB(154, 154, 154)
 	textButton.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	textButton.Parent = frame
-
-	local textButton1 = Instance.new("TextButton")
-	textButton1.Visible = false
-	textButton1.Name = "Off"
-	textButton1.BackgroundTransparency = 1
-	textButton1.Font = Enum.Font.Kalam
-	textButton1.Size = UDim2.new(0, 51, 0, 50)
-	textButton1.Position = UDim2.new(-0.002, 0, 0.19, 0)
-	textButton1.Text = "On"
-	textButton1.TextScaled = true
-	textButton1.TextColor3 = Color3.fromRGB(154, 154, 154)
-	textButton1.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-	textButton1.Parent = frame
+	
+	local close = Instance.new("TextButton")
+	close.Name = "Close"
+	close.BackgroundTransparency = 1
+	close.Size = UDim2.new(0, 59,0, 36)
+	close.Position = UDim2.new(0.894, 0,0.032, 0)
+	close.Text = "❌"
+	close.TextScaled = true
+	close.TextColor3 = Color3.fromRGB(154, 154, 154)
+	close.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	close.Parent = frame
 	
 	local Holding = Instance.new("BoolValue")
 	Holding.Name = "Holding"
 	Holding.Parent = screenGui
-
+	
+	close.MouseButton1Click:Connect(function()
+		textButton:Destroy()
+		close:Destroy()
+		textLabel2:Destroy()
+		textLabel1.Text = "Bye!👋🏽"
+		textLabel1.TextColor3 = Color3.fromRGB(255, 255, 255)
+		wait(3)
+		screenGui:Destroy()
+		wait(1)
+		script.Enabled = false
+	end)
 	-- Додаємо ScreenGui в PlayerGui гравця
 	screenGui.Parent = player:WaitForChild("PlayerGui")
 
@@ -163,34 +172,6 @@ local function createScreenGuiForPlayer()
 	end)
 
 
-
-
-	local button = textButton1
-	local frame = frame
-	local button2 = textButton
-	local screengui = frame.Parent 
-	local StarterGui = game:GetService("StarterGui")
-
-	local function onButtonClicked()
-
-		local Players = game:GetService('Players')
-		for _,v in pairs(Players:GetPlayers()) do
-			local Highlight = v.Character:FindFirstChild('Highlight')
-			local BillBoard = v.Character:WaitForChild('Head'):FindFirstChild('B')
-		end
-
-		local NotificationName = 'ESP Off!'
-		local NotificationNote = 'Good luck!'
-		StarterGui:SetCore("SendNotification",{Title = NotificationName; Text = NotificationNote;})
-	end
-	textButton1.MouseButton1Click:Connect(function()
-		textButton1.Position = UDim2.new(1488,1488,1488,1488)
-		textButton.Position = UDim2.new(-0.002, 0, 0.19, 0)
-		textButton1.Visible = false
-		textButton.Visible = true
-
-	end)
-	button.MouseButton1Click:Connect(onButtonClicked)
 end
 
 
