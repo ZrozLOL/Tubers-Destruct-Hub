@@ -186,37 +186,41 @@ local function createScreenGuiForPlayer()
 	local localPlayer = players.LocalPlayer
 
 	-- Функція для телепортації до гравця
-	local function teleportToPlayer(playerName)
-		local targetPlayer = players:FindFirstChild(playerName)
+	local function teleportToPlayer(partialName)
+		local targetPlayer = nil
+
+		-- Перебираємо всіх гравців і шукаємо того, чиє ім'я починається з введеного тексту
+		for _, player in ipairs(players:GetPlayers()) do
+			if player.Name:sub(1, #partialName):lower() == partialName:lower() then
+				targetPlayer = player
+				break
+			end
+		end
+
 		if targetPlayer then
 			local character = targetPlayer.Character
 			if character and character:FindFirstChild("HumanoidRootPart") then
 				localPlayer.Character:SetPrimaryPartCFrame(character.HumanoidRootPart.CFrame)
-				textBox.Text = ""
 				ErrorFound.Text = "Successfully!"
 				wait(2)
 				ErrorFound.Text = ""
 			else
-				ErrorFound.Text = "Player humanoid not Found!"
-				textBox.Text = ""
+				ErrorFound.Text = "Player Humanoid not found!"
 				wait(2)
-				textBox.Text = ""
-				ErrorFound.Text = "Player humanoid not Found!"
+				ErrorFound.Text = ""
 			end
 		else
-			textBox.Text = ""
-			ErrorFound.Text = "Player not Found!"
+			ErrorFound.Text = "Player not found!"
 			wait(2)
-			textBox.Text = ""
 			ErrorFound.Text = ""
 		end
 	end
 
 	-- Обробка натискання на кнопку
 	button.MouseButton1Click:Connect(function()
-		local playerName = textBox.Text
-		if playerName and playerName ~= "" then
-			teleportToPlayer(playerName)
+		local partialName = textBox.Text
+		if partialName and partialName ~= "" then
+			teleportToPlayer(partialName)
 		else
 			print("Будь ласка, введіть нік гравця.")
 		end
