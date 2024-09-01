@@ -2,114 +2,7 @@ local player = game.Players.LocalPlayer
 
 
 ----
-local Workspace = game:GetService("Workspace")
-local CoreGui = game:GetService("CoreGui")
-local Players = game:GetService("Players")
-local Noclip = Instance.new("ScreenGui")
-local BG = Instance.new("Frame")
-local Title = Instance.new("TextLabel")
-local Toggle = Instance.new("TextButton")
-local StatusPF = Instance.new("TextLabel")
-local Status = Instance.new("TextLabel")
-local Plr = Players.LocalPlayer
-local Clipon = false
 
-Noclip.Name = "Noclip"
-Noclip.Parent = game.CoreGui
-
-BG.Name = "BG"
-BG.Parent = Noclip
-BG.BackgroundColor3 = Color3.new(0.0980392, 0.0980392, 0.0980392)
-BG.BorderColor3 = Color3.new(0.0588235, 0.0588235, 0.0588235)
-BG.BorderSizePixel = 2
-BG.Position = UDim2.new(0.149479166, 0, 0.82087779, 0)
-BG.Size = UDim2.new(0, 210, 0, 127)
-BG.Active = true
-BG.Draggable = true
-
-Title.Name = "Title"
-Title.Parent = BG
-Title.BackgroundColor3 = Color3.new(0.266667, 0.00392157, 0.627451)
-Title.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
-Title.BorderSizePixel = 2
-Title.Size = UDim2.new(0, 210, 0, 33)
-Title.Font = Enum.Font.Highway
-Title.Text = "Noclip"
-Title.TextColor3 = Color3.new(1, 1, 1)
-Title.FontSize = Enum.FontSize.Size32
-Title.TextSize = 30
-Title.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
-Title.TextStrokeTransparency = 0
-
-Toggle.Parent = BG
-Toggle.BackgroundColor3 = Color3.new(0.266667, 0.00392157, 0.627451)
-Toggle.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
-Toggle.BorderSizePixel = 2
-Toggle.Position = UDim2.new(0.152380958, 0, 0.374192119, 0)
-Toggle.Size = UDim2.new(0, 146, 0, 36)
-Toggle.Font = Enum.Font.Highway
-Toggle.FontSize = Enum.FontSize.Size28
-Toggle.Text = "Toggle"
-Toggle.TextColor3 = Color3.new(1, 1, 1)
-Toggle.TextSize = 25
-Toggle.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
-Toggle.TextStrokeTransparency = 0
-
-StatusPF.Name = "StatusPF"
-StatusPF.Parent = BG
-StatusPF.BackgroundColor3 = Color3.new(1, 1, 1)
-StatusPF.BackgroundTransparency = 1
-StatusPF.Position = UDim2.new(0.314285725, 0, 0.708661377, 0)
-StatusPF.Size = UDim2.new(0, 56, 0, 20)
-StatusPF.Font = Enum.Font.Highway
-StatusPF.FontSize = Enum.FontSize.Size24
-StatusPF.Text = "Status:"
-StatusPF.TextColor3 = Color3.new(1, 1, 1)
-StatusPF.TextSize = 20
-StatusPF.TextStrokeColor3 = Color3.new(0.333333, 0.333333, 0.333333)
-StatusPF.TextStrokeTransparency = 0
-StatusPF.TextWrapped = true
-
-Status.Name = "Status"
-Status.Parent = BG
-Status.BackgroundColor3 = Color3.new(1, 1, 1)
-Status.BackgroundTransparency = 1
-Status.Position = UDim2.new(0.580952346, 0, 0.708661377, 0)
-Status.Size = UDim2.new(0, 56, 0, 20)
-Status.Font = Enum.Font.Highway
-Status.FontSize = Enum.FontSize.Size14
-Status.Text = "off"
-Status.TextColor3 = Color3.new(0.666667, 0, 0)
-Status.TextScaled = true
-Status.TextSize = 14
-Status.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
-Status.TextWrapped = true
-Status.TextXAlignment = Enum.TextXAlignment.Left
-
-
-Toggle.MouseButton1Click:connect(function()
-	if Status.Text == "off" then
-		Clipon = true
-		Status.Text = "on"
-		Status.TextColor3 = Color3.new(0,185,0)
-		Stepped = game:GetService("RunService").Stepped:Connect(function()
-			if not Clipon == false then
-				for a, b in pairs(Workspace:GetChildren()) do
-					if b.Name == Plr.Name then
-						for i, v in pairs(Workspace[Plr.Name]:GetChildren()) do
-							if v:IsA("BasePart") then
-								v.CanCollide = false
-							end end end end
-			else
-				Stepped:Disconnect()
-			end
-		end)
-	elseif Status.Text == "on" then
-		Clipon = false
-		Status.Text = "off"
-		Status.TextColor3 = Color3.new(170,0,0)
-	end
-end)
 
 ----
 
@@ -145,7 +38,7 @@ local function createScreenGuiForPlayer()
 	textLabel1.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	textLabel1.Parent = frame
 
-	local textLabel2 = Instance.new("TextLabel")
+	local textLabel2 = Instance.new("TextLabel")--
 	textLabel2.BackgroundTransparency = 1
 	textLabel2.Size = UDim2.new(0, 91,0, 50)
 	textLabel2.Position = UDim2.new(0.016, 0,0.312, 0)
@@ -156,10 +49,22 @@ local function createScreenGuiForPlayer()
 	textLabel2.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	textLabel2.Parent = frame
 
-	local FlyOn = Instance.new("TextLabel")
+
+	local Noclip = Instance.new("TextLabel")--
+	Noclip.BackgroundTransparency = 1
+	Noclip.Size = UDim2.new(0, 134,0, 70)
+	Noclip.Position = UDim2.new(0.326, 0,0.28, 0)
+	Noclip.Font = Enum.Font.Jura
+	Noclip.Text = "NoClip"
+	Noclip.TextScaled = true
+	Noclip.TextColor3 = Color3.fromRGB(168, 168, 168)
+	Noclip.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	Noclip.Parent = frame
+
+	local FlyOn = Instance.new("TextLabel")--
 	FlyOn.BackgroundTransparency = 1
 	FlyOn.Size = UDim2.new(0, 81,0, 50)
-	FlyOn.Position = UDim2.new(0.016, 0,0.586, 0)
+	FlyOn.Position = UDim2.new(0.162, 0,0.312, 0)
 	FlyOn.Font = Enum.Font.Jura
 	FlyOn.Text = "Fly"
 	FlyOn.TextScaled = true
@@ -167,24 +72,36 @@ local function createScreenGuiForPlayer()
 	FlyOn.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	FlyOn.Parent = frame
 
-	local textButton = Instance.new("TextButton")
+	local textButton = Instance.new("TextButton") --
 	textButton.Name = "On"
 	textButton.BackgroundTransparency = 1
 	textButton.Font = Enum.Font.Jura
 	textButton.Size = UDim2.new(0, 51, 0, 50)
-	textButton.Position = UDim2.new(0.192, 0,0.351, 0)
+	textButton.Position = UDim2.new(0.051, 0,0.69, 0)
 	textButton.Text = "Off"
 	textButton.TextScaled = true
 	textButton.TextColor3 = Color3.fromRGB(154, 154, 154)
 	textButton.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	textButton.Parent = frame
+	
+	local OnClip = Instance.new("TextButton")--
+	OnClip.Name = "OnClip"
+	OnClip.BackgroundTransparency = 1
+	OnClip.Font = Enum.Font.Jura
+	OnClip.Size = UDim2.new(0, 91,0, 56)
+	OnClip.Position = UDim2.new(0.363, 0,0.672, 0)
+	OnClip.Text = "Off"
+	OnClip.TextScaled = true
+	OnClip.TextColor3 = Color3.fromRGB(154, 154, 154)
+	OnClip.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	OnClip.Parent = frame
 
-	local FlyButtton = Instance.new("TextButton")
+	local FlyButtton = Instance.new("TextButton")--
 	FlyButtton.Name = "OnFly"
 	FlyButtton.BackgroundTransparency = 1
 	FlyButtton.Font = Enum.Font.Jura
 	FlyButtton.Size = UDim2.new(0, 51, 0, 50)
-	FlyButtton.Position = UDim2.new(0.192, 0,0.62, 0)
+	FlyButtton.Position = UDim2.new(0.19, 0,0.69, 0)
 	FlyButtton.Text = "Off"
 	FlyButtton.TextScaled = true
 	FlyButtton.TextColor3 = Color3.fromRGB(154, 154, 154)
@@ -222,10 +139,35 @@ local function createScreenGuiForPlayer()
 	local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 
 	nowe = false
-
+	local Clipon = false
 	Frame.Active = true -- main = gui
 	Frame.Draggable = true
+	OnClip.MouseButton1Click:connect(function()
+		if OnClip.Text == "Off" then
 
+			Clipon = true
+			OnClip.Text = "On"
+			Stepped = game:GetService("RunService").Stepped:Connect(function()
+				if not Clipon == false then
+					for a, b in pairs(Workspace:GetChildren()) do
+						if b.Name == Plr.Name then
+							for i, v in pairs(Workspace[Plr.Name]:GetChildren()) do
+								if v:IsA("BasePart") then
+									v.CanCollide = false
+								end
+							end
+						end
+					end
+				else
+					Stepped:Disconnect()
+				end
+			end)
+		elseif OnClip.Text == "On" then
+			Clipon = false
+			OnClip.Text = "Off"
+		end
+	end)
+	
 	onof.MouseButton1Down:connect(function()
 		FlyButtton.Text =  "On"
 		if nowe == true then
