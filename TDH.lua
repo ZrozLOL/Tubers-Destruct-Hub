@@ -180,6 +180,7 @@ local function createScreenGuiForPlayer()
 	Holding.Parent = screenGui
 	
 	-- Отримуємо посилання на необхідні об'єкти
+	-- Отримуємо посилання на необхідні об'єкти
 	local textBox = EnterNameBox
 	local button = Ok
 	local players = game:GetService("Players")
@@ -189,9 +190,10 @@ local function createScreenGuiForPlayer()
 	local function teleportToPlayer(partialName)
 		local targetPlayer = nil
 
-		-- Перебираємо всіх гравців і шукаємо того, чиє ім'я починається з введеного тексту
+		-- Перебираємо всіх гравців і шукаємо того, чиє ім'я або відображуваний нік починається з введеного тексту
 		for _, player in ipairs(players:GetPlayers()) do
-			if player.Name:sub(1, #partialName):lower() == partialName:lower() then
+			if player.Name:sub(1, #partialName):lower() == partialName:lower() or
+				player.DisplayName:sub(1, #partialName):lower() == partialName:lower() then
 				targetPlayer = player
 				break
 			end
@@ -210,7 +212,7 @@ local function createScreenGuiForPlayer()
 				ErrorFound.Text = ""
 			end
 		else
-			ErrorFound.Text = "Player not found!"
+			ErrorFound.Text = "Player name or Player not found!"
 			wait(2)
 			ErrorFound.Text = ""
 		end
@@ -222,13 +224,11 @@ local function createScreenGuiForPlayer()
 		if partialName and partialName ~= "" then
 			teleportToPlayer(partialName)
 		else
-			print("Будь ласка, введіть нік гравця.")
+			ErrorFound.Text = "Enter Name"
+			wait(2)
+			ErrorFound.Text = ""
 		end
 	end)
-
-
-	--This fly tool works on any device. Great dev asset for RP games and more.
-	--Credit: XNEO
 
 	local main = screenGui
 	local Frame = frame
