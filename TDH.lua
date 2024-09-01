@@ -10,25 +10,33 @@ local function createScreenGuiForPlayer()
 	frame.Name = "frame"
 	frame.Size = UDim2.new(0, 562, 0, 186)
 	frame.Position = UDim2.new(0.254, 0, 0.092, 0)
-	frame.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	frame.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 	frame.Parent = screenGui
+	
+	local frame2 = Instance.new("Frame")
+	frame2.Name = "Frame2"
+	frame2.Size = UDim2.new(0, 561,0, -49)
+	frame2.Position = UDim2.new(0, 0,0.269, 0)
+	frame2.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
+	frame2.Parent = frame
+	frame2.BorderSizePixel = 0
 
 	local textLabel1 = Instance.new("TextLabel")
 	textLabel1.BackgroundTransparency = 1
-	textLabel1.Font = Enum.Font.Kalam
+	textLabel1.Font = Enum.Font.Jura
 	textLabel1.Size = UDim2.new(0, 244, 0, 50)
-	textLabel1.Position = UDim2.new(0.283, 0, 0, 0)
+	textLabel1.Position = UDim2.new(0.283, 0,0, 0)
 	textLabel1.Text = "Tubers Destruct Hub"
 	textLabel1.TextScaled = true
-	textLabel1.TextColor3 = Color3.fromRGB(91, 179, 112)
+	textLabel1.TextColor3 = Color3.fromRGB(255, 255, 255)
 	textLabel1.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	textLabel1.Parent = frame
 
 	local textLabel2 = Instance.new("TextLabel")
 	textLabel2.BackgroundTransparency = 1
-	textLabel2.Size = UDim2.new(0, 244, 0, 50)
-	textLabel2.Position = UDim2.new(-0.053, 0, 0.194, 0)
-	textLabel2.Font = Enum.Font.Kalam
+	textLabel2.Size = UDim2.new(0, 91,0, 50)
+	textLabel2.Position = UDim2.new(0.016, 0,0.312, 0)
+	textLabel2.Font = Enum.Font.Jura
 	textLabel2.Text = "Esp"
 	textLabel2.TextScaled = true
 	textLabel2.TextColor3 = Color3.fromRGB(168, 168, 168)
@@ -38,8 +46,8 @@ local function createScreenGuiForPlayer()
 	local FlyOn = Instance.new("TextLabel")
 	FlyOn.BackgroundTransparency = 1
 	FlyOn.Size = UDim2.new(0, 81,0, 50)
-	FlyOn.Position = UDim2.new(0.091, 0,0.36, 0)
-	FlyOn.Font = Enum.Font.Kalam
+	FlyOn.Position = UDim2.new(0.016, 0,0.586, 0)
+	FlyOn.Font = Enum.Font.Jura
 	FlyOn.Text = "Fly"
 	FlyOn.TextScaled = true
 	FlyOn.TextColor3 = Color3.fromRGB(168, 168, 168)
@@ -49,9 +57,9 @@ local function createScreenGuiForPlayer()
 	local textButton = Instance.new("TextButton")
 	textButton.Name = "On"
 	textButton.BackgroundTransparency = 1
-	textButton.Font = Enum.Font.Kalam
+	textButton.Font = Enum.Font.Jura
 	textButton.Size = UDim2.new(0, 51, 0, 50)
-	textButton.Position = UDim2.new(-0.002, 0, 0.19, 0)
+	textButton.Position = UDim2.new(0.192, 0,0.351, 0)
 	textButton.Text = "Off"
 	textButton.TextScaled = true
 	textButton.TextColor3 = Color3.fromRGB(154, 154, 154)
@@ -59,11 +67,11 @@ local function createScreenGuiForPlayer()
 	textButton.Parent = frame
 
 	local FlyButtton = Instance.new("TextButton")
-	FlyButtton.Name = "On"
+	FlyButtton.Name = "OnFly"
 	FlyButtton.BackgroundTransparency = 1
-	FlyButtton.Font = Enum.Font.Kalam
+	FlyButtton.Font = Enum.Font.Jura
 	FlyButtton.Size = UDim2.new(0, 51, 0, 50)
-	FlyButtton.Position = UDim2.new(-0.002, 0,0.362, 0)
+	FlyButtton.Position = UDim2.new(0.192, 0,0.62, 0)
 	FlyButtton.Text = "Off"
 	FlyButtton.TextScaled = true
 	FlyButtton.TextColor3 = Color3.fromRGB(154, 154, 154)
@@ -79,7 +87,7 @@ local function createScreenGuiForPlayer()
 	close.TextScaled = true
 	close.TextColor3 = Color3.fromRGB(154, 154, 154)
 	close.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-	close.Parent = frame
+	close.Parent = frame2
 
 	local Holding = Instance.new("BoolValue")
 	Holding.Name = "Holding"
