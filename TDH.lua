@@ -34,7 +34,7 @@ local function createScreenGuiForPlayer()
 	textLabel2.TextColor3 = Color3.fromRGB(168, 168, 168)
 	textLabel2.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	textLabel2.Parent = frame
-	
+
 	local FlyOn = Instance.new("TextLabel")
 	FlyOn.BackgroundTransparency = 1
 	FlyOn.Size = UDim2.new(0, 81,0, 50)
@@ -57,7 +57,7 @@ local function createScreenGuiForPlayer()
 	textButton.TextColor3 = Color3.fromRGB(154, 154, 154)
 	textButton.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	textButton.Parent = frame
-	
+
 	local FlyButtton = Instance.new("TextButton")
 	FlyButtton.Name = "On"
 	FlyButtton.BackgroundTransparency = 1
@@ -69,7 +69,7 @@ local function createScreenGuiForPlayer()
 	FlyButtton.TextColor3 = Color3.fromRGB(154, 154, 154)
 	FlyButtton.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	FlyButtton.Parent = frame
-	
+
 	local close = Instance.new("TextButton")
 	close.Name = "Close"
 	close.BackgroundTransparency = 1
@@ -80,11 +80,11 @@ local function createScreenGuiForPlayer()
 	close.TextColor3 = Color3.fromRGB(154, 154, 154)
 	close.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	close.Parent = frame
-	
+
 	local Holding = Instance.new("BoolValue")
 	Holding.Name = "Holding"
 	Holding.Parent = screenGui
-	
+
 	--This fly tool works on any device. Great dev asset for RP games and more.
 	--Credit: XNEO
 
@@ -305,7 +305,7 @@ local function createScreenGuiForPlayer()
 
 	local tis
 
-	
+
 
 	game:GetService("Players").LocalPlayer.CharacterAdded:Connect(function(char)
 		wait(0.7)
@@ -316,7 +316,7 @@ local function createScreenGuiForPlayer()
 
 
 
-	
+
 	close.MouseButton1Click:Connect(function()
 		textButton:Destroy()
 		close:Destroy()
