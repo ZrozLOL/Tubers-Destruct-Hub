@@ -15,7 +15,7 @@ local function createScreenGuiForPlayer()
 	local frame = Instance.new("Frame")
 	frame.Name = "frame"
 	frame.Size = UDim2.new(0, 562, 0, 186)
-	frame.Position = UDim2.new(0.254, 0, 0.092, 0)
+	frame.Position = UDim2.new(0, 562,0, 297)
 	frame.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 	frame.Parent = screenGui
 	
@@ -164,14 +164,12 @@ local function createScreenGuiForPlayer()
 	FlyButtton.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	FlyButtton.Parent = frame
 
-	local close = Instance.new("TextButton")
+	local close = Instance.new("ImageButton")
+	close.Image = "http://www.roblox.com/asset/?id=98271098003324"
 	close.Name = "Close"
 	close.BackgroundTransparency = 1
-	close.Size = UDim2.new(0, 59,0, 36)
-	close.Position = UDim2.new(0.894, 0,0.032, 0)
-	close.Text = "❌"
-	close.TextScaled = true
-	close.TextColor3 = Color3.fromRGB(154, 154, 154)
+	close.Size = UDim2.new(0, 54,0, 51)
+	close.Position = UDim2.new(0.904, 0,-0.02, 0)
 	close.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	close.Parent = frame2
 
