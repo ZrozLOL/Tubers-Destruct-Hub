@@ -72,6 +72,62 @@ local function createScreenGuiForPlayer()
 	FlyOn.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	FlyOn.Parent = frame
 
+	local Tptext = Instance.new("TextLabel")--
+	Tptext.BackgroundTransparency = 1
+	Tptext.Size = UDim2.new(0, 91,0, 50)
+	Tptext.Position = UDim2.new(0.575, 0,0.333, 0)
+	Tptext.Font = Enum.Font.Jura
+	Tptext.Text = "Tp"
+	Tptext.TextScaled = true
+	Tptext.TextColor3 = Color3.fromRGB(168, 168, 168)
+	Tptext.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	Tptext.Parent = frame
+
+	local Enteranametext= Instance.new("TextLabel")--
+	Enteranametext.BackgroundTransparency = 1
+	Enteranametext.Size = UDim2.new(0, 101,0, 25)
+	Enteranametext.Position = UDim2.new(0.564, 0,0.602, 0)
+	Enteranametext.Font = Enum.Font.Jura
+	Enteranametext.Text = "Enter name"
+	Enteranametext.TextScaled = true
+	Enteranametext.TextColor3 = Color3.fromRGB(168, 168, 168)
+	Enteranametext.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	Enteranametext.Parent = frame
+	
+	local ErrorFound = Instance.new("TextLabel")--
+	ErrorFound.BackgroundTransparency = 1
+	ErrorFound.Size = UDim2.new(0, 108,0, 25)
+	ErrorFound.Position = UDim2.new(0.564, 0,0.866, 0)
+	ErrorFound.Font = Enum.Font.Jura
+	ErrorFound.Text = ""
+	ErrorFound.TextScaled = true
+	ErrorFound.TextColor3 = Color3.fromRGB(168, 168, 168)
+	ErrorFound.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	ErrorFound.Parent = frame
+
+	local EnterNameBox = Instance.new("TextBox")--
+	EnterNameBox.BackgroundTransparency = 0.88
+	EnterNameBox.Size = UDim2.new(0, 101,0, 25)
+	EnterNameBox.Position = UDim2.new(0.555, 0,0.758, 0)
+	EnterNameBox.Font = Enum.Font.Jura
+	EnterNameBox.Text = ""
+	EnterNameBox.TextScaled = true
+	EnterNameBox.TextColor3 = Color3.fromRGB(168, 168, 168)
+	EnterNameBox.BackgroundColor3 = Color3.fromRGB(79, 79, 79)
+	EnterNameBox.Parent = frame
+	
+	local Ok = Instance.new("TextButton") --
+	Ok.Name = "Ent"
+	Ok.BackgroundTransparency = 1
+	Ok.Font = Enum.Font.Jura
+	Ok.Size = UDim2.new(0, 36,0, 36)
+	Ok.Position = UDim2.new(0.77, 0,0.733, 0)
+	Ok.Text = "Ok"
+	Ok.TextScaled = true
+	Ok.TextColor3 = Color3.fromRGB(154, 154, 154)
+	Ok.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	Ok.Parent = frame
+
 	local textButton = Instance.new("TextButton") --
 	textButton.Name = "On"
 	textButton.BackgroundTransparency = 1
@@ -122,6 +178,50 @@ local function createScreenGuiForPlayer()
 	local Holding = Instance.new("BoolValue")
 	Holding.Name = "Holding"
 	Holding.Parent = screenGui
+	
+	-- Отримуємо посилання на необхідні об'єкти
+	local textBox = EnterNameBox
+	local button = Ok
+	local players = game:GetService("Players")
+	local localPlayer = players.LocalPlayer
+
+	-- Функція для телепортації до гравця
+	local function teleportToPlayer(playerName)
+		local targetPlayer = players:FindFirstChild(playerName)
+		if targetPlayer then
+			local character = targetPlayer.Character
+			if character and character:FindFirstChild("HumanoidRootPart") then
+				localPlayer.Character:SetPrimaryPartCFrame(character.HumanoidRootPart.CFrame)
+				textBox.Text = ""
+				ErrorFound.Text = "Successfully!"
+				wait(2)
+				ErrorFound.Text = ""
+			else
+				ErrorFound.Text = "Player humanoid not Found!"
+				textBox.Text = ""
+				wait(2)
+				textBox.Text = ""
+				ErrorFound.Text = "Player humanoid not Found!"
+			end
+		else
+			textBox.Text = ""
+			ErrorFound.Text = "Player not Found!"
+			wait(2)
+			textBox.Text = ""
+			ErrorFound.Text = ""
+		end
+	end
+
+	-- Обробка натискання на кнопку
+	button.MouseButton1Click:Connect(function()
+		local playerName = textBox.Text
+		if playerName and playerName ~= "" then
+			teleportToPlayer(playerName)
+		else
+			print("Будь ласка, введіть нік гравця.")
+		end
+	end)
+
 
 	--This fly tool works on any device. Great dev asset for RP games and more.
 	--Credit: XNEO
@@ -381,9 +481,7 @@ local function createScreenGuiForPlayer()
 
 
 	close.MouseButton1Click:Connect(function()
-		textButton:Destroy()
 		close:Destroy()
-		textLabel2:Destroy()
 		textLabel1.Text = "Bye!👋🏽"
 		textLabel1.TextColor3 = Color3.fromRGB(255, 255, 255)
 		wait(3)
