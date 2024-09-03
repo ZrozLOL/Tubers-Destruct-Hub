@@ -36,7 +36,7 @@ local function createScreenGuiForPlayer()
 	Beta.Font = Enum.Font.Jura
 	Beta.Size = UDim2.new(0, 88,0, 29)
 	Beta.Position = UDim2.new(-0.001, 0,-0.002, 0)
-	Beta.Text = "Beta 1.8"
+	Beta.Text = "Beta 1.9"
 	Beta.TextScaled = true
 	Beta.TextColor3 = Color3.fromRGB(0, 0, 0)
 	Beta.BackgroundColor3 = Color3.fromRGB(104, 104, 104)
@@ -91,13 +91,25 @@ local function createScreenGuiForPlayer()
 	local Coming = Instance.new("TextLabel")--
 	Coming.BackgroundTransparency = 1
 	Coming.Size = UDim2.new(0, 431,0, 29)
-	Coming.Position = UDim2.new(0.026, 0,0.143, 0)
+	Coming.Position = UDim2.new(0.0, 0,0.18, 0)
 	Coming.Font = Enum.Font.Jura
 	Coming.Text = "More Coming Soon..."
 	Coming.TextScaled = true
 	Coming.TextColor3 = Color3.fromRGB(147, 147, 147)
 	Coming.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	Coming.Parent = frame
+	
+	local XrayText = Instance.new("TextLabel")--
+	XrayText.BackgroundTransparency = 1
+	XrayText.Size = UDim2.new(0, 431,0, 29)
+	XrayText.Position = UDim2.new(0.0, 0,0.139, 0)
+	XrayText.Font = Enum.Font.Jura
+	XrayText.Text = "X-ray"
+	XrayText.TextScaled = true
+	XrayText.TextColor3 = Color3.fromRGB(147, 147, 147)
+	XrayText.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	XrayText.Parent = frame
+
 
 	local Enteranametext= Tptext--
 	
@@ -111,7 +123,30 @@ local function createScreenGuiForPlayer()
 	ErrorFound.TextColor3 = Color3.fromRGB(147, 147, 147)
 	ErrorFound.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	ErrorFound.Parent = frame
+	
+	local TrojanLabel = Instance.new("TextLabel")--
+	TrojanLabel.BackgroundTransparency = 1
+	TrojanLabel.Size = UDim2.new(0, 181,0, 36)
+	TrojanLabel.Position = UDim2.new(0.548, 0,0.137, 0)
+	TrojanLabel.Font = Enum.Font.Jura
+	TrojanLabel.Text = "Trojan"
+	TrojanLabel.TextScaled = true
+	TrojanLabel.TextColor3 = Color3.fromRGB(147, 147, 147)
+	TrojanLabel.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	TrojanLabel.Parent = frame
 
+	local Visual = Instance.new("TextLabel")--
+	Visual.BackgroundTransparency = 1
+	Visual.Size = UDim2.new(0, 120,0, 18)
+	Visual.Position = UDim2.new(0.718, 0,0.132, 0)
+	Visual.Font = Enum.Font.Jura
+	Visual.Text = "(Visual)"
+	Visual.TextScaled = true
+	Visual.TextColor3 = Color3.fromRGB(104, 104, 104)
+	Visual.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	Visual.Parent = frame
+
+	
 	local EnterNameBox = Instance.new("TextBox")--
 	EnterNameBox.BackgroundTransparency = 0.5
 	EnterNameBox.Size = UDim2.new(0, 200,0, 50)
@@ -122,6 +157,8 @@ local function createScreenGuiForPlayer()
 	EnterNameBox.TextColor3 = Color3.fromRGB(39, 39, 39)
 	EnterNameBox.BackgroundColor3 = Color3.fromRGB(139, 139, 139)
 	EnterNameBox.Parent = frame
+	
+	
 	
 	local Ok = Instance.new("TextButton")--
 	Ok.Name = "Ent"
@@ -134,6 +171,30 @@ local function createScreenGuiForPlayer()
 	Ok.TextColor3 = Color3.fromRGB(147, 147, 147)
 	Ok.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	Ok.Parent = frame
+	
+	local XrayOn = Instance.new("TextButton")--
+	XrayOn.Name = "XrayOn"
+	XrayOn.BackgroundTransparency = 1
+	XrayOn.Font = Enum.Font.Jura
+	XrayOn.Size = UDim2.new(0, 109,0, 24)
+	XrayOn.Position = UDim2.new(0.374, 0,0.164, 0)
+	XrayOn.Text = "Turn On"
+	XrayOn.TextScaled = true
+	XrayOn.TextColor3 = Color3.fromRGB(147, 147, 147)
+	XrayOn.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	XrayOn.Parent = frame
+	
+	local trojanon = Instance.new("TextButton")--
+	trojanon.Name = "trojanon"
+	trojanon.BackgroundTransparency = 1
+	trojanon.Font = Enum.Font.Jura
+	trojanon.Size = UDim2.new(0, 109,0, 24)
+	trojanon.Position = UDim2.new(0.632, 0,0.164, 0)
+	trojanon.Text = "Turn On"
+	trojanon.TextScaled = true
+	trojanon.TextColor3 = Color3.fromRGB(147, 147, 147)
+	trojanon.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	trojanon.Parent = frame
 
 	local textButton = Instance.new("TextButton") --
 	textButton.Name = "On"
@@ -184,6 +245,72 @@ local function createScreenGuiForPlayer()
 	Holding.Name = "Holding"
 	Holding.Parent = screenGui
 	
+	-- Отримуємо доступ до елементів GUI
+	local button = trojanon
+	local player = game.Players.LocalPlayer -- Отримуємо локального гравця
+	local isSpawning = false -- Змінна для контролю спавнінгу
+	local spawnConnection -- Змінна для збереження підключення до спавнінгу
+
+	-- Функція для створення частини (Part)
+	local function createPart()
+		local character = player.Character or player.CharacterAdded:Wait() -- Отримуємо персонажа гравця
+		local humanoidRootPart = character:WaitForChild("HumanoidRootPart") -- Використовуємо HumanoidRootPart як точку спавнінгу
+
+		local part = Instance.new("Part") -- Створюємо новий Part
+		part.Size = Vector3.new(8.811, 4.305, 5.307) -- Встановлюємо розміри
+		part.Position = humanoidRootPart.Position + Vector3.new(0, 5, 0) -- Встановлюємо позицію над гравцем
+		part.Anchored = false -- Закріплюємо Part, щоб він не падав
+		part.Parent = workspace -- Додаємо Part в робочий простір
+	end
+
+	-- Функція для запуску або зупинки спавнінгу
+	local function toggleSpawning()
+		if isSpawning then
+			-- Якщо вже спавниться, зупиняємо спавнінг
+			isSpawning = false
+			if spawnConnection then
+				spawnConnection:Disconnect() -- Відключаємо попереднє підключення
+			end
+		else
+			-- Якщо не спавниться, запускаємо спавнінг
+			isSpawning = true
+			spawnConnection = game:GetService("RunService").Heartbeat:Connect(function()
+				createPart() -- Викликаємо функцію створення частини
+				wait(0.1) -- Затримка в 1 секунду між спавнами
+			end)
+		end
+	end
+
+	-- Прив'язуємо функцію до натискання кнопки
+	button.MouseButton1Click:Connect(toggleSpawning)
+
+	-- Припустимо, що у вас є кнопка в GUI під назвою "XRayButton"
+	local button = XrayOn
+
+	local xrayEnabled = false
+
+	local function toggleXRay()
+		xrayEnabled = not xrayEnabled
+
+		if xrayEnabled then
+			for _, part in pairs(workspace:GetDescendants()) do
+				if part:IsA("BasePart") then
+					XrayOn.Text = "Turn Off"
+					part.Transparency = 0.5 -- робить частини напівпрозорими
+				end
+			end
+		else
+			for _, part in pairs(workspace:GetDescendants()) do
+				if part:IsA("BasePart") then
+					XrayOn.Text = "Turn On"
+					part.Transparency = 0 -- повертає частини до нормального стану
+				end
+			end
+		end
+	end
+
+	button.MouseButton1Click:Connect(toggleXRay)
+
 	-- Отримуємо посилання на необхідні об'єкти
 	-- Отримуємо посилання на необхідні об'єкти
 	local textBox = EnterNameBox
