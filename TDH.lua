@@ -297,7 +297,7 @@ local function createScreenGuiForPlayer()
 		if xrayEnabled then
 			for _, part in pairs(workspace:GetDescendants()) do
 				if part:IsA("BasePart") then
-					XrayOn.Text = "Turn On"
+					XrayOn.Text = "Turn Off"
 					part.Transparency = 0.5 -- робить частини напівпрозорими
 				end
 			end
@@ -368,7 +368,28 @@ local function createScreenGuiForPlayer()
 	local Frame = frame
 	local onof = FlyButtton
 
+	local Noclip = nil
+	local Clip = nil
 
+	function noclip()
+		Clip = false
+		local function Nocl()
+			if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+				for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+					if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
+						v.CanCollide = false
+					end
+				end
+			end
+			wait(0.21) -- basic optimization
+		end
+		Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
+	end
+
+	function clip()
+		if Noclip then Noclip:Disconnect() end
+		Clip = true
+	end
 	speeds = 1
 
 	local speaker = game:GetService("Players").LocalPlayer
@@ -382,27 +403,12 @@ local function createScreenGuiForPlayer()
 	Frame.Draggable = true
 	OnClip.MouseButton1Click:connect(function()
 		if OnClip.Text == "Turn Off" then
-
-			Clipon = true
-			OnClip.Text = "Turn On"
-			Stepped = game:GetService("RunService").Stepped:Connect(function()
-				if not Clipon == false then
-					for a, b in pairs(Workspace:GetChildren()) do
-						if b.Name == Plr.Name then
-							for i, v in pairs(Workspace[Plr.Name]:GetChildren()) do
-								if v:IsA("BasePart") then
-									v.CanCollide = false
-								end
-							end
-						end
-					end
-				else
-					Stepped:Disconnect()
-				end
-			end)
-		elseif OnClip.Text == "Turn On" then
-			Clipon = false
 			OnClip.Text = "Turn Off"
+			noclip() -- to toggle noclip() and clip()
+			
+		else
+			OnClip.Text = "Turn On"
+			clip()
 		end
 	end)
 	
