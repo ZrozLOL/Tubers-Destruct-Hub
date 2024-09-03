@@ -402,11 +402,11 @@ local function createScreenGuiForPlayer()
 	Frame.Active = true -- main = gui
 	Frame.Draggable = true
 	OnClip.MouseButton1Click:connect(function()
-		if OnClip.Text == "Turn Off" then
+		if OnClip.Text == "Turn On" then
 			OnClip.Text = "Turn Off"
 			noclip() -- to toggle noclip() and clip()
 			
-		else
+		elseif OnClip.Text == "Turn Off" then
 			OnClip.Text = "Turn On"
 			clip()
 		end
