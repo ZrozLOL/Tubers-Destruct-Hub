@@ -266,6 +266,7 @@ local function createScreenGuiForPlayer()
 	-- Функція для запуску або зупинки спавнінгу
 	local function toggleSpawning()
 		if isSpawning then
+			trojanon.Text = "Turn On"
 			-- Якщо вже спавниться, зупиняємо спавнінг
 			isSpawning = false
 			if spawnConnection then
@@ -274,6 +275,7 @@ local function createScreenGuiForPlayer()
 		else
 			-- Якщо не спавниться, запускаємо спавнінг
 			isSpawning = true
+			trojanon.Text = "Turn Off"
 			spawnConnection = game:GetService("RunService").Heartbeat:Connect(function()
 				createPart() -- Викликаємо функцію створення частини
 				wait(0.1) -- Затримка в 1 секунду між спавнами
@@ -295,7 +297,7 @@ local function createScreenGuiForPlayer()
 		if xrayEnabled then
 			for _, part in pairs(workspace:GetDescendants()) do
 				if part:IsA("BasePart") then
-					XrayOn.Text = "Turn Off"
+					XrayOn.Text = "Turn On"
 					part.Transparency = 0.5 -- робить частини напівпрозорими
 				end
 			end
@@ -379,10 +381,10 @@ local function createScreenGuiForPlayer()
 	Frame.Active = true -- main = gui
 	Frame.Draggable = true
 	OnClip.MouseButton1Click:connect(function()
-		if OnClip.Text == "Off" then
+		if OnClip.Text == "Turn Off" then
 
 			Clipon = true
-			OnClip.Text = "On"
+			OnClip.Text = "Turn On"
 			Stepped = game:GetService("RunService").Stepped:Connect(function()
 				if not Clipon == false then
 					for a, b in pairs(Workspace:GetChildren()) do
@@ -398,14 +400,14 @@ local function createScreenGuiForPlayer()
 					Stepped:Disconnect()
 				end
 			end)
-		elseif OnClip.Text == "On" then
+		elseif OnClip.Text == "Turn On" then
 			Clipon = false
-			OnClip.Text = "Off"
+			OnClip.Text = "Turn Off"
 		end
 	end)
 	
 	onof.MouseButton1Down:connect(function()
-		FlyButtton.Text =  "On"
+		FlyButtton.Text =  "Turn Off"
 		if nowe == true then
 			nowe = false
 
@@ -590,7 +592,7 @@ local function createScreenGuiForPlayer()
 			plr.Character.Humanoid.PlatformStand = false
 			game.Players.LocalPlayer.Character.Animate.Disabled = false
 			tpwalking = false
-			FlyButtton.Text = "Off"
+			FlyButtton.Text = "Turn On"
 
 
 
@@ -672,7 +674,7 @@ local function createScreenGuiForPlayer()
 		local char = player.Character
 		if char and char:FindFirstChild("esp") then
 			char.esp:Destroy()
-			textButton.Text = "Off"
+			textButton.Text = "Turn Off"
 		end
 	end
 
@@ -685,7 +687,7 @@ local function createScreenGuiForPlayer()
 	local function disable()
 		for _, player in pairs(game.Players:GetPlayers()) do
 			destroyESP(player)
-			textButton.Text = "Off"
+			textButton.Text = "Turn Off"
 		end
 	end
 
@@ -693,7 +695,7 @@ local function createScreenGuiForPlayer()
 		for _, player in pairs(game.Players:GetPlayers()) do
 			if player.Team == game.Players.LocalPlayer.Team then
 				destroyESP(player)
-				textButton.Text = "Off"
+				textButton.Text = "Turn Off"
 			end
 		end
 	end
@@ -706,7 +708,7 @@ local function createScreenGuiForPlayer()
 		end)
 		player.CharacterRemoving:Connect(function()
 			destroyESP(player)
-			textButton.Text = "Off"
+			textButton.Text = "Turn Off"
 		end)
 	end)
 
@@ -716,10 +718,10 @@ local function createScreenGuiForPlayer()
 		espbutton.BackgroundColor3 = enabled and Color3.new(0, 255, 0) or Color3.new(255, 0, 0)
 		if enabled then
 			enable()
-			textButton.Text = "On"
+			textButton.Text = "Turn On"
 		else
 			disable()
-			textButton.Text = "Off"
+			textButton.Text = "Turn Off"
 		end
 	end)
 
