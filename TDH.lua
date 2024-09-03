@@ -36,7 +36,7 @@ local function createScreenGuiForPlayer()
 	Beta.Font = Enum.Font.Jura
 	Beta.Size = UDim2.new(0, 88,0, 29)
 	Beta.Position = UDim2.new(-0.001, 0,-0.002, 0)
-	Beta.Text = "Beta 1.9"
+	Beta.Text = "Beta 1.9.1"
 	Beta.TextScaled = true
 	Beta.TextColor3 = Color3.fromRGB(0, 0, 0)
 	Beta.BackgroundColor3 = Color3.fromRGB(104, 104, 104)
