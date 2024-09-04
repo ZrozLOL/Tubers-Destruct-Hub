@@ -19,7 +19,7 @@ local function createScreenGuiForPlayer()
 	frame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	frame.BackgroundTransparency = 0.2
 	frame.Parent = screenGui
-	
+
 	local textLabel1 = Instance.new("TextLabel")--
 	textLabel1.BackgroundTransparency = 0
 	textLabel1.Font = Enum.Font.Jura
@@ -30,13 +30,13 @@ local function createScreenGuiForPlayer()
 	textLabel1.TextColor3 = Color3.fromRGB(0, 0, 0)
 	textLabel1.BackgroundColor3 = Color3.fromRGB(104, 104, 104)
 	textLabel1.Parent = frame
-	
+
 	local Beta = Instance.new("TextLabel")--
 	Beta.BackgroundTransparency = 1
 	Beta.Font = Enum.Font.Jura
 	Beta.Size = UDim2.new(0, 88,0, 29)
 	Beta.Position = UDim2.new(-0.001, 0,-0.002, 0)
-	Beta.Text = "Beta 1.9.1"
+	Beta.Text = "Beta 1.9.2"
 	Beta.TextScaled = true
 	Beta.TextColor3 = Color3.fromRGB(0, 0, 0)
 	Beta.BackgroundColor3 = Color3.fromRGB(104, 104, 104)
@@ -87,7 +87,7 @@ local function createScreenGuiForPlayer()
 	Tptext.TextColor3 = Color3.fromRGB(168, 168, 168)
 	Tptext.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	Tptext.Parent = frame
-	
+
 	local Coming = Instance.new("TextLabel")--
 	Coming.BackgroundTransparency = 1
 	Coming.Size = UDim2.new(0, 431,0, 29)
@@ -98,7 +98,7 @@ local function createScreenGuiForPlayer()
 	Coming.TextColor3 = Color3.fromRGB(147, 147, 147)
 	Coming.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	Coming.Parent = frame
-	
+
 	local XrayText = Instance.new("TextLabel")--
 	XrayText.BackgroundTransparency = 1
 	XrayText.Size = UDim2.new(0, 431,0, 29)
@@ -112,7 +112,7 @@ local function createScreenGuiForPlayer()
 
 
 	local Enteranametext= Tptext--
-	
+
 	local ErrorFound = Instance.new("TextLabel")--
 	ErrorFound.BackgroundTransparency = 1
 	ErrorFound.Size = UDim2.new(0, 289,0, 26)
@@ -123,7 +123,7 @@ local function createScreenGuiForPlayer()
 	ErrorFound.TextColor3 = Color3.fromRGB(147, 147, 147)
 	ErrorFound.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	ErrorFound.Parent = frame
-	
+
 	local TrojanLabel = Instance.new("TextLabel")--
 	TrojanLabel.BackgroundTransparency = 1
 	TrojanLabel.Size = UDim2.new(0, 181,0, 36)
@@ -134,6 +134,17 @@ local function createScreenGuiForPlayer()
 	TrojanLabel.TextColor3 = Color3.fromRGB(147, 147, 147)
 	TrojanLabel.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	TrojanLabel.Parent = frame
+	
+	local SitLabel = Instance.new("TextLabel")--
+	SitLabel.BackgroundTransparency = 1
+	SitLabel.Size = UDim2.new(0, 181,0, 36)
+	SitLabel.Position = UDim2.new(0, 0,0.137, 0)
+	SitLabel.Font = Enum.Font.Jura
+	SitLabel.Text = "Sit"
+	SitLabel.TextScaled = true
+	SitLabel.TextColor3 = Color3.fromRGB(147, 147, 147)
+	SitLabel.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	SitLabel.Parent = frame
 
 	local Visual = Instance.new("TextLabel")--
 	Visual.BackgroundTransparency = 1
@@ -146,7 +157,7 @@ local function createScreenGuiForPlayer()
 	Visual.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	Visual.Parent = frame
 
-	
+
 	local EnterNameBox = Instance.new("TextBox")--
 	EnterNameBox.BackgroundTransparency = 0.5
 	EnterNameBox.Size = UDim2.new(0, 200,0, 50)
@@ -157,9 +168,9 @@ local function createScreenGuiForPlayer()
 	EnterNameBox.TextColor3 = Color3.fromRGB(39, 39, 39)
 	EnterNameBox.BackgroundColor3 = Color3.fromRGB(139, 139, 139)
 	EnterNameBox.Parent = frame
-	
-	
-	
+
+
+
 	local Ok = Instance.new("TextButton")--
 	Ok.Name = "Ent"
 	Ok.BackgroundTransparency = 1
@@ -172,6 +183,18 @@ local function createScreenGuiForPlayer()
 	Ok.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	Ok.Parent = frame
 	
+	local Sit = Instance.new("TextButton")--
+	Sit.Name = "Sit"
+	Sit.BackgroundTransparency = 1
+	Sit.Font = Enum.Font.Jura
+	Sit.Size = UDim2.new(0, 109,0, 24)
+	Sit.Position = UDim2.new(0, 40,0.164, 0)
+	Sit.Text = "Turn On"
+	Sit.TextScaled = true
+	Sit.TextColor3 = Color3.fromRGB(147, 147, 147)
+	Sit.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	Sit.Parent = frame
+
 	local XrayOn = Instance.new("TextButton")--
 	XrayOn.Name = "XrayOn"
 	XrayOn.BackgroundTransparency = 1
@@ -183,7 +206,7 @@ local function createScreenGuiForPlayer()
 	XrayOn.TextColor3 = Color3.fromRGB(147, 147, 147)
 	XrayOn.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	XrayOn.Parent = frame
-	
+
 	local trojanon = Instance.new("TextButton")--
 	trojanon.Name = "trojanon"
 	trojanon.BackgroundTransparency = 1
@@ -207,7 +230,7 @@ local function createScreenGuiForPlayer()
 	textButton.TextColor3 = Color3.fromRGB(147, 147, 147)
 	textButton.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
 	textButton.Parent = frame
-	
+
 	local OnClip = Instance.new("TextButton")--
 	OnClip.Name = "OnClip"
 	OnClip.BackgroundTransparency = 1
@@ -245,6 +268,35 @@ local function createScreenGuiForPlayer()
 	Holding.Name = "Holding"
 	Holding.Parent = screenGui
 	
+	local player = game.Players.LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
+	local humanoid = character:WaitForChild("Humanoid")
+
+	-- Функція для того, щоб гравець сів
+	local function SitPlayer()
+		humanoid.Sit = true
+		if Sit.Text == "Turn On" then
+			humanoid.Sit = false
+		end
+	end
+
+	-- Функція, яка викликається при стрибку
+	local function OnJump()
+		Sit.Text = "Turn On"
+	end
+
+	Sit.MouseButton1Click:Connect(function()
+		if Sit.Text == "Turn On" then
+			Sit.Text = "Turn Off"
+			SitPlayer()
+		else
+			humanoid.Sit = false
+			Sit.Text = "Turn On"
+		end
+	end)
+	humanoid.Jumping:Connect(OnJump)
+
+
 	-- Отримуємо доступ до елементів GUI
 	local button = trojanon
 	local player = game.Players.LocalPlayer -- Отримуємо локального гравця
@@ -405,13 +457,13 @@ local function createScreenGuiForPlayer()
 		if OnClip.Text == "Turn On" then
 			OnClip.Text = "Turn Off"
 			noclip() -- to toggle noclip() and clip()
-			
+
 		elseif OnClip.Text == "Turn Off" then
 			OnClip.Text = "Turn On"
 			clip()
 		end
 	end)
-	
+
 	onof.MouseButton1Down:connect(function()
 		FlyButtton.Text =  "Turn Off"
 		if nowe == true then
